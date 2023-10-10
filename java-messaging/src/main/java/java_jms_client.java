@@ -95,14 +95,26 @@ public class java_jms_client {
 	     * */
 	    //AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
 	    String name_prefix = "Queue";
+	    String queue_url = "";
 	    lq_result = sqs.listQueues(new ListQueuesRequest(name_prefix));
 	    System.out.println("Queue URLs with prefix: " + name_prefix);
 	    for (String url : lq_result.getQueueUrls()) {
 	        System.out.println(url);
+	        queue_url = url;
 	    }
 
 	    //Console output to show that the above codes executed
 	    System.out.println("HelloWorld");
+
+	    /*
+	     * Delete a Queue
+	     *
+	     * import com.amazonaws.services.sqs.AmazonSQS;
+	     * import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+	     * */
+	    //AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
+
+	    sqs.deleteQueue(queue_url);
 
 	}
 }
